@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hunt Digital Media | Nikhil</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <!-- Bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Jquery -->
+    <link
+      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/dubrox/Multiple-Dates-Picker-for-jQuery-UI@master/jquery-ui.multidatespicker.js"></script> -->
+
+    <!-- jquery multi -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+    <link
+      href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- end jquery  -->
+
+    <!-- Javascript -->
+    <script src="./main.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1 class="text-center">Hunt Digital media (DRR)</h1>
+        <p class="text-center">Assignment</p>
+      </header>
+      <!-- bootstrap -->
+      <section class="current_DRR">
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="mySwitch"
+            name="darkmode"
+            value="yes"
+          />
+          <label class="form-check-label" for="mySwitch">Dark Mode</label>
+        </div>
+        <table class="table table-striped table-hover table-bordered table_DRR">
+          <thead>
+            <tr class="table_header">
+              <th>Action</th>
+              <th>Id</th>
+              <th>start date</th>
+              <th>end date</th>
+              <th>month, year</th>
+              <th>Dates Excluded</th>
+              <th>Number of days</th>
+              <th>Lead count</th>
+              <th>expected Drr</th>
+              <th>Last updated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table_data_row">
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>
+                <div id="date-picker-1" class="date-picker-container startDate">
+                  <input
+                    type="text"
+                    id="start_date"
+                    class="date-picker"
+                    onkeypress="return false;"
+                  /><i id="start" class="fa-solid fa-calendar"></i>
+                </div>
+              </td>
+              <td>
+                <div class="date-picker-container endDate">
+                  <input
+                    type="text"
+                    id="end_date"
+                    class="date-picker"
+                    disabled
+                  /><i id="end" class="fa-solid fa-calendar"></i>
+                </div>
+              </td>
+              <td id="date-count"></td>
+              <td>
+                <div class="date-picker-container datesExcluded">
+                  <input id="exclude_date" class="date-picker" disabled /><i
+                    id="exclude"
+                    class="fa-solid fa-calendar"
+                  ></i>
+                </div>
+              </td>
+              <td id="days-count"></td>
+              <td>
+                <input type="number" placeholder="0" class="lead_count field" />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="0"
+                  class="expected_drr field"
+                />
+              </td>
+              <td>
+                <input
+                  type="submit"
+                  id="submit"
+                  class="btn btn-success"
+                  value="Save"
+                /><input
+                  type="submit"
+                  id="cancel"
+                  value="Cancel"
+                  class="btn btn-danger mt-1"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

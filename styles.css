@@ -1,0 +1,96 @@
+/* General Css */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: 100%;
+}
+
+table,
+th,
+td {
+  border: 1px solid rgb(104, 104, 104);
+  border-collapse: collapse;
+  /* width: 100%; */
+  height: auto;
+}
+
+main {
+  height: 100vh;
+}
+
+.field {
+  width: 80px;
+}
+
+.table_header > th {
+  width: auto;
+  padding: 10px;
+  text-transform: capitalize;
+  height: auto;
+}
+
+.date-picker {
+  padding: 4px;
+  border: 1px solid #999;
+  background-color: #cfd8dc;
+  color: #555;
+  border-radius: 10px;
+  font-size: 18px;
+  width: 110px;
+}
+
+.date-picker-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.endDate,
+.datesExcluded {
+  opacity: 0.4;
+}
+
+.fa-calendar {
+  cursor: pointer;
+}
+
+.current_DRR {
+  margin: 50px 40px;
+  overflow: auto;
+  height: 500px;
+  border: 0.1px solid #999;
+  border-radius: 10px;
+}
+
+.current_DRR::-webkit-scrollbar {
+  display: block;
+  width: 4px;
+  height: 12px;
+  background-color: #bebebe;
+}
+
+.current_DRR::-webkit-scrollbar-thumb {
+  background-color: rgb(91, 91, 91);
+  border-right: none;
+  border-left: none;
+  border-radius: 25px;
+}
+
+.table_data_row > td {
+  padding: 12px;
+  width: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .current_DRR {
+    margin: 0 15px;
+  }
+}
