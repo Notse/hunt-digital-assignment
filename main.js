@@ -23,39 +23,46 @@ $(document).ready(function () {
     });
   });
 
-  // adding hardcode data to fill the empty area
+  //  append saved data to html
   $(function () {
-    [1, 2, 3, 4].forEach((e) => {
-      $("tbody").append(`<tr class="table_data_row">
-      <td>N/A</td>
-      <td>${e}</td>
-      <td>
-        <div id="date-picker-1" class="date-picker-container startDate">
-        2023-10-03
-        </div>
-      </td>
-      <td>
-        <div class="date-picker-container ">
-        2023-10-25
-        </div>
-      </td>
-      <td id="date-count"></td>
-      <td>
-        <div class="date-picker-container ">
-        10/04/2023, 10/05/2023, 10/06/2023
-        </div>
-      </td>
-      <td id="days-count">20</td>
-      <td>
-       8000
-      </td>
-      <td>
-        400
-      </td>
-      <td>
-      2023-10-17
-      </td>
-    </tr>`);
+    $.ajax({
+      url: "http://localhost:4000/data",
+      type: "GET",
+      dataType: "json", // added data type
+      success: function (res) {
+        res.forEach((e, i) => {
+          $("tbody").append(`<tr class="table_data_row">
+          <td>N/A</td>
+          <td>${i + 1}</td>
+          <td>
+            <div id="date-picker-1" class="date-picker-container startDate">
+           ${e["Start Date"]}
+            </div>
+          </td>
+          <td>
+            <div class="date-picker-container ">
+            ${e["End Date"]}
+            </div>
+          </td>
+          <td id="date-count">${e["Month, Year"]}</td>
+          <td>
+            <div class="date-picker-container ">
+            ${e["Excluded Date"]}
+            </div>
+          </td>
+          <td id="days-count"> ${e["Number Of days"]}</td>
+          <td>
+          ${e["Lead count"]}
+          </td>
+          <td>
+          ${e["Expected Drr"]}
+          </td>
+          <td>
+          ${e.CurrentTime}
+          </td>
+        </tr>`);
+        });
+      },
     });
   });
 
@@ -91,8 +98,8 @@ $(document).ready(function () {
     onSelect: function () {
       $(this).data("datepicker").inline = true;
       let arrDate = $("#exclude_date").val().split(" ");
+
       excludedDates = arrDate.length;
-      //   console.log((excludedDates = $("#exclude_date").val().split(" ")));
       if (arrDate[0] === "") {
         $("#days-count").text(totalDays - 0);
       } else {
@@ -104,17 +111,48 @@ $(document).ready(function () {
     },
   });
 
+  // submit data  to server
   $("#submit").on("click", function () {
-    // let actionUrl = "http://127.0.0.1:4000/";
-    // $.ajax({
-    //   type: "POST",
-    //   url: actionUrl,
-    //   data: "data is sending", // serializes the form's elements.
-    //   success: function (data) {
-    //     alert(data); // show response from the php script.
-    //   },
-    // });
-    alert("Data Saved");
+    let currentDate = new Date($.now());
+
+    let dateTime =
+      currentDate.getDate() +
+      "-" +
+      (currentDate.getMonth() + 1) +
+      "-" +
+      currentDate.getFullYear() +
+      " " +
+      currentDate.getHours() +
+      ":" +
+      currentDate.getMinutes() +
+      ":" +
+      currentDate.getSeconds();
+
+    let data = {
+      "Number Of days": $("#days-count").text(),
+      Id: 1,
+      "Start Date": $("#start_date").val(),
+      "End Date": $("#end_date").val(),
+      "Excluded Date": $("#exclude_date").val(),
+      "Month, Year": $("#date-count").text(),
+      "Lead count": $(".lead_count").val(),
+      "Expected Drr": $(".expected_drr").val(),
+      CurrentTime: `${dateTime}`,
+    };
+    $.ajax({
+      url: "http://localhost:4000/getCity",
+      type: "POST",
+      data: data,
+      success: function (data) {
+        alert("Submitted successfully");
+      },
+      error: function (e) {
+        alert("Server is not connected,-> run command node server.js");
+      },
+    });
+    $(document).ajaxStop(function () {
+      window.location.reload();
+    });
   });
 
   $("#start_date").change(function () {

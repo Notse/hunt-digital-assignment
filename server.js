@@ -3,24 +3,38 @@ const port = 4000;
 const express = require("express");
 const app = express();
 const cors = require("cors");
-let corsOptions = {
-  origin: ["http://127.0.0.1/:5500"],
-};
-app.use(cors(corsOptions));
+const bodyParser = require("body-parser");
 
-const server = http.createServer(function (req, res) {
-  res.write("Hello Notse");
-  // res.header("Access-Control-Allow-Origin", "*");
-  console.log(req);
-  res.end();
+let data = [];
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
+  })
+);
+
+app.get("/data", (req, res) => {
+  res.status(200).send(data);
 });
 
-server.listen(port, function (error) {
-  if (error) {
-    console.log("Something went wrong", error);
-  } else {
-    console.log("Server is listening on port " + port);
-  }
+app.post("/getCity", (req, res) => {
+  data.push(req.body);
+  console.log(data);
+  res.status(200).send("Done!");
 });
 
-// app.listen(4000, () => console.log("Server running on port 4000"));
+app.get("/", (req, res) => {
+  res.send("Welcome to my server!");
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
