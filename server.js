@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: "http://127.0.0.1:5500",
+    origin: "https://notse.github.io/",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true,

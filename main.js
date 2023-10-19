@@ -26,7 +26,7 @@ $(document).ready(function () {
   //  append saved data to html
   $(function () {
     $.ajax({
-      url: "http://localhost:4000/data",
+      url: "https://hunt-digital-assignment.onrender.com/data",
       type: "GET",
       dataType: "json", // added data type
       success: function (res) {
@@ -140,7 +140,7 @@ $(document).ready(function () {
       CurrentTime: `${dateTime}`,
     };
     $.ajax({
-      url: "http://localhost:4000/getCity",
+      url: "https://hunt-digital-assignment.onrender.com/getCity",
       type: "POST",
       data: data,
       success: function (data) {
