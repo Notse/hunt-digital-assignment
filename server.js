@@ -32,7 +32,7 @@ app.post("/getCity", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Welcome to my server!");
+  res.send("Welcome to my Notse server!");
 });
 
 app.listen(port, () => {
